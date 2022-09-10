@@ -1,0 +1,8 @@
+preDefinedType;filename;isValid;expectedResponse;expectedError
+thumbnail;abcdefghij.jpg;true;/thumbnail/abcd/efgh/abcdefghij.jpg;
+thumbnail;abcde.jpg;true;/thumbnail/abcd/abcde.jpg;
+thumbnail;_somedir_anotherdir_abcdef.jpg;true;/thumbnail/_som/edir/_somedir_anotherdir_abcdef.jpg;
+thumbnail;abcde.jpg;true;/thumbnail/abcd/abcde.jpg;
+thumbnail;abcd.jpg;true;/thumbnail/abcd.jpg;
+thumbnail;.jpg;false;;Invalid filename .jpg
+thumbnail;abcd.mp4;false;;Invalid filename abcd.mp4
