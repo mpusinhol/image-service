@@ -1,0 +1,14 @@
+application:
+  source-root-url: "localhost:8081/product-images"
+aws:
+  access-key: "dummy-key"
+  secret-key: "dummy-secret"
+  s3:
+    region: "eu-west-1"
+    endpoint: "http://localhost:9444/s3"
+    image-bucket: "resized-images-bucket"
+#logdb:
+#  endpoint: ${LOGDB_ENDPOINT}
+#  name: ${LOGDB_NAME}
+#  usename: ${LOGDB_USERNAME}
+#  password: ${LOGDB_PASSWORD}

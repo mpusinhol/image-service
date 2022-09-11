@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ImagePreDefinedType {
+    ORIGINAL(1200, 630, 100, ImageScaleType.CROP, "#000000", ImageType.PNG, "ecom-original-base"),
     THUMBNAIL(255, 382, 90, ImageScaleType.CROP, "#000000", ImageType.JPG, "ecom-thumb-base"),
     DETAIL_LARGE(355, 563, 70, ImageScaleType.CROP, "#000000", ImageType.PNG, "ecom-detail-large-base");
 

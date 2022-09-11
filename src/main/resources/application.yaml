@@ -1,1 +1,14 @@
-
+application:
+  source-root-url: ${SOURCE_ROOT_URL}
+aws:
+  access-key: ${AWS_ACCESS_KEY_ID}
+  secret-key: ${AWS_SECRET_ACCESS_KEY}
+  s3:
+    region: ${AWS_S3_REGION}
+    endpoint: ${AWS_S3_ENDPOINT}
+    image-bucket: "resized-images-bucket"
+logdb:
+  endpoint: ${LOGDB_ENDPOINT}
+  name: ${LOGDB_NAME}
+  usename: ${LOGDB_USERNAME}
+  password: ${LOGDB_PASSWORD}
