@@ -53,8 +53,8 @@ public class S3BucketServiceImpl implements BucketService {
             if (e.statusCode() == HttpStatus.NOT_FOUND.value()) {
                 throw new ObjectNotFoundException(String.format("Could not find object with key %s", key));
             }
-            log.error("Error while fetching object {}", key, e);
-            throw new InternalServerErrorException("Something went wrong.", e);
+            String message = String.format("Error while fetching object %s. Details: %s", key, e.getMessage());
+            throw new InternalServerErrorException(message, e);
         }
     }
 
@@ -69,8 +69,8 @@ public class S3BucketServiceImpl implements BucketService {
             PutObjectResponse putObjectResponse = s3Client.putObject(putObjectRequest, RequestBody.fromBytes(object));
             return putObjectResponse.eTag();
         } catch (AwsServiceException | SdkClientException e) {
-            log.error("Error while putting object in the bucket. Key {}; error: {}", key, e.getMessage(), e);
-            throw new InternalServerErrorException("Something went wrong.", e);
+            String message = String.format("Error while putting object in the bucket. Key: %s; error: %s", key, e.getMessage());
+            throw new InternalServerErrorException(message, e);
         }
     }
 
@@ -84,8 +84,8 @@ public class S3BucketServiceImpl implements BucketService {
         try {
             s3Client.deleteObject(deleteObjectRequest);
         } catch (AwsServiceException | SdkClientException e) {
-            log.error("Error while deleting object from the bucket. Key {}; error: {}", key, e.getMessage(), e);
-            throw new InternalServerErrorException("Something went wrong.", e);
+            String message = String.format("Error while deleting object from the bucket. Key: %s; error: %s", key, e.getMessage());
+            throw new InternalServerErrorException(message, e);
         }
     }
 
@@ -99,7 +99,6 @@ public class S3BucketServiceImpl implements BucketService {
             s3Client.createBucket(createBucketRequest);
         } catch (AwsServiceException | SdkClientException e) {
             String message = String.format("Unable to create bucket %s.", name);
-            log.error(message, e);
             throw new InternalServerErrorException(message, e);
         }
     }
