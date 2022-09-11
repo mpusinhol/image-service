@@ -2,6 +2,7 @@ package com.mpusinhol.imageservice.resource.exception;
 
 import com.mpusinhol.imageservice.dto.StandardError;
 import com.mpusinhol.imageservice.exception.InternalServerErrorException;
+import com.mpusinhol.imageservice.exception.InvalidImagePreDefinedTypeException;
 import com.mpusinhol.imageservice.exception.ObjectNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -37,5 +38,12 @@ public class ResourceExceptionHandler {
         StandardError error = new StandardError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), Instant.now());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+    }
+
+    @ExceptionHandler(InvalidImagePreDefinedTypeException.class)
+    public ResponseEntity<StandardError> invalidImagePreDefinedType(InvalidImagePreDefinedTypeException exception, HttpServletRequest request) {
+        StandardError error = new StandardError(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), Instant.now());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }

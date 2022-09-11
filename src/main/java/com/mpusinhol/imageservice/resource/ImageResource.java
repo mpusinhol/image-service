@@ -3,6 +3,7 @@ package com.mpusinhol.imageservice.resource;
 import com.mpusinhol.imageservice.enumeration.ImagePreDefinedType;
 import com.mpusinhol.imageservice.enumeration.ImageType;
 import com.mpusinhol.imageservice.service.ImageService;
+import com.mpusinhol.imageservice.validation.ValidImagePreDefinedType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -31,7 +32,7 @@ public class ImageResource {
 
     @GetMapping(value = {"/show/{pre-defined-type}", "/show/{pre-defined-type}/{seo-name}"})
     public ResponseEntity<byte[]> findImage(
-            @PathVariable(name = "pre-defined-type") String preDefinedType,
+            @ValidImagePreDefinedType @PathVariable(name = "pre-defined-type") String preDefinedType,
             @PathVariable(name = "seo-name", required = false) String seoName,
             @RequestParam(name = "reference") String filename) throws IOException {
 
@@ -45,7 +46,7 @@ public class ImageResource {
 
     @DeleteMapping("/flush/{pre-defined-type}")
     public ResponseEntity<Void> deleteImage(
-            @PathVariable(name = "pre-defined-type") String preDefinedType,
+            @ValidImagePreDefinedType @PathVariable(name = "pre-defined-type") String preDefinedType,
             @RequestParam(name = "reference") String filename) {
 
         ImagePreDefinedType imagePreDefinedType = ImagePreDefinedType.valueOf(preDefinedType.toUpperCase());
